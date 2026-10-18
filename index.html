@@ -2,17 +2,32 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <title>Realidad Aumentada - Placa Madre</title>
+    <title>Placa Madre 3D - RA</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <!-- Librería para cargar modelos 3D reales -->
+    <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/arjs-gestures.js"></script>
   </head>
   <body style="margin: 0px; overflow: hidden;">
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
       
-      <!-- Marcador personalizado apuntando a la imagen de la placa madre alojada en internet -->
-      <a-marker type="pattern" url="https://raw.githubusercontent.com/agusfedorischak-maker/placa-madre-ra/principal/pattern-placamadre.patt">
-        <a-box position="0 0.5 0" material="color: cyan; opacity: 0.8;" scale="0.6 0.6 0.6" animation="property: rotation; to: 0 360 0; loop: true; dur: 3000"></a-box>
-        <a-text value="PLACA MADRE" position="0 1.2 0" align="center" color="#FFFFFF" scale="1.5 1.5 1.5"></a-text>
+      <a-assets>
+        <!-- Modelo 3D gratuito de una computadora/tarjeta en internet -->
+        <a-asset-item id="placa-model" src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models@master/2.0/ComputerCase/glTF/ComputerCase.gltf"></a-asset-item>
+      </a-assets>
+
+      <!-- Apuntando al marcador que ya sabemos que te funcionó recién -->
+      <a-marker preset="hiro">
+        <!-- Acá se proyecta el modelo 3D en lugar del cubo -->
+        <a-entity 
+          gltf-model="#placa-model" 
+          scale="0.3 0.3 0.3" 
+          position="0 0.5 0" 
+          rotation="0 45 0"
+          animation="property: rotation; to: 0 405 0; loop: true; dur: 8000">
+        </a-entity>
+        
+        <a-text value="PLACA MADRE" position="0 1.5 0" align="center" color="#00FFFF" scale="1.5 1.5 1.5"></a-text>
       </a-marker>
 
       <a-entity camera></a-entity>
