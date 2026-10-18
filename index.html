@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Cargamos las librerías gratuitas de A-Frame y AR.js -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Realidad Aumentada - Placa Madre</title>
+    <!-- Cargamos las librerías gratuitas -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   </head>
   <body style="margin: 0px; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    <!-- Configuramos la cámara a alta resolución (1280x720) y cámara trasera -->
+    <a-scene 
+      embedded 
+      arjs="sourceType: webcam; debugUIEnabled: false; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;">
       
-      <!-- Marcador genérico 'hiro' (reconoce el patrón predeterminado) -->
+      <!-- Marcador Hiro -->
       <a-marker preset="hiro">
-        <!-- Objeto 3D o Texto que flota encima de la placa -->
         <a-text value="PLACA MADRE" position="0 1.2 0" align="center" color="#00FFFF" scale="1.5 1.5 1.5"></a-text>
         <a-box position="0 0.5 0" material="color: cyan; opacity: 0.7;" animation="property: rotation; to: 0 360 0; loop: true; dur: 4000"></a-box>
       </a-marker>
 
-      <!-- Cámara del teléfono -->
       <a-entity camera></a-entity>
     </a-scene>
   </body>
